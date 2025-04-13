@@ -47,6 +47,8 @@ public class ProjectController implements ProjectsApi {
   @Override
   @IsUser
   public ResponseEntity<ProjectDto> updateProject(String projectId, ProjectProperties projectProperties) {
-    return ProjectsApi.super.updateProject(projectId, projectProperties);
+      final Project project = ProjectConverter.fromProperties(projectProperties);
+      final Project updated = projectService.updateProject(sessionState.getUser(), projectId, project);
+      return ResponseEntity.ok(ProjectConverter.toDto(updated));
   }
 }

@@ -22,6 +22,10 @@ public class EmployeeService {
     return employeeRepository.findAllByCompanyId(user.getCompanyId());
   }
 
+  public Employee getEmployee(User user, String employeeId) {
+    return employeeRepository.findByIdAndCompanyId(employeeId, user.getCompanyId()).orElseThrow();
+  }
+
   public Employee createEmployee(User user, Employee employee) {
     employee.setCompanyId(user.getCompanyId());
     employee.setLang(Language.DE);

@@ -21,6 +21,10 @@ public class ProjectService {
     return projectRepository.findAllByCompanyId(user.getCompanyId());
   }
 
+  public Project getProject(User user, String projectId) {
+    return projectRepository.findByIdAndCompanyId(projectId, user.getCompanyId()).orElseThrow();
+  }
+
   public Project createProject(User user, Project project) {
     project.setCompanyId(user.getCompanyId());
     return projectRepository.save(project);

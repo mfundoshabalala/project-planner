@@ -1,0 +1,26 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="03-create-assignment-table" author="dev">
+        <createTable tableName="assignment">
+            <column name="id" type="VARCHAR(36)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="company_id" type="VARCHAR(36)"/>
+            <column name="employee_id" type="VARCHAR(36)"/>
+            <column name="project_id" type="VARCHAR(36)"/>
+            <column name="date" type="DATE"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+            baseTableName="assignment"
+            baseColumnNames="company_id"
+            constraintName="fk_assignment_company"
+            referencedTableName="company"
+            referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
+
+

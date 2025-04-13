@@ -48,7 +48,7 @@
     "distinct-colors": "^3.0.0",
     "editorjs-html": "^3.4.3",
     "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
+    "jspdf": "^3.0.1",
     "lottie-web": "^5.12.2",
     "net": "^1.0.2",
     "ngx-lottie": "^10.0.0",

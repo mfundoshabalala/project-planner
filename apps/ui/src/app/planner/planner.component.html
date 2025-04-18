@@ -20,18 +20,27 @@
       <th>{{ nthDayOfWeek(6) | date: "dd.MM.yyyy" }}</th>
     </tr>
     @for (employee of employees; track employee) {
-      <tr class="bg-gray-50-hover cursor-pointer">
-        <th>{{ employee.name }}</th>
-        @for (day of [0, 1, 2, 3, 4, 5, 6]; track day) {
-          <td>
-            <ng-select [multiple]="false" [searchable]="true" [clearable]="true" style="width: 100%">
-              @for (project of projects; track project) {
-                <ng-option [value]="project.id">{{ project.name }}</ng-option>
-              }
-            </ng-select>
-          </td>
-        }
-      </tr>
+    <tr class="bg-gray-50-hover cursor-pointer">
+      <th>{{ employee.name }}</th>
+      @for (day of [0, 1, 2, 3, 4, 5, 6]; track day) {
+      <td>
+        <ng-select [multiple]="false" [searchable]="true" [clearable]="true"
+          style="width: 100%">
+          @for (project of projects; track project) {
+          <ng-option [value]="project.id">{{ project.name }}</ng-option>
+          }
+        </ng-select>
+        <!-- <ng-select [items]="projects" bindLabel="name" bindValue="id"
+          [multiple]="false" [searchable]="true" [clearable]="true"
+          [(ngModel)]="selectedProjects[employee.id][getFormattedDate(nthDayOfWeek(day))]"
+          (ngModelChange)="onProjectSelected(employee.id, $event, nthDayOfWeek(day))">
+          <ng-option *ngFor="let project of projects; trackBy: trackByProject" [value]="project.id">
+            {{ project.name }}
+          </ng-option>
+        </ng-select> -->
+      </td>
+      }
+    </tr>
     }
   </table>
 </div>
